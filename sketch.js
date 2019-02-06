@@ -2,6 +2,7 @@ let input, button, greeting;
 var bubbles = [];
 var blue_sky;
 var beach_sounds;
+let t = 0; // time variable
 // var is_play_sound = true;
 
 function preload(){
@@ -27,6 +28,8 @@ function setup() {
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
 
+  // image(blue_sky, 0, 0, 750, 500);
+
   beach_sounds.loop();
 
   textFont('Libre Baskerville');
@@ -38,7 +41,7 @@ function setup() {
   button.position(input.x + input.width + 10, y + height-90);
   button.mouseClicked(release);
 
-  question = createElement('h2', 'what\'s occupying your thoughts?');
+  question = createElement('h2', 'what\'s occupying your mind?');
   question.position(x + 30, y + height-150);
 
   textAlign(CENTER);
@@ -142,6 +145,20 @@ function draw() {
     bubbles[i].move();
     bubbles[i].display();
   }
+
+  // make a x and y grid of ellipses
+  for (let x = 0; x <= width; x = x + 10) {
+    for (let y = 435; y <= 1000; y = y + 10) {
+      // let myX = x + 20 * cos(2 * PI * t + angle);
+      // let myY = y + 20 * sin(2 * PI * t + angle);
+      fill(108,223,234, 100);
+      noStroke()
+      ellipse(x + random(-1, 1), y + 150 * sin(frameCount * 0.03), 5) + random(-5, 5);
+      // ellipse(x, 450 + 150 * sin(frameCount * 0.05), 5);
+    }
+  }
+
+  t = t + 0.01; // update time
 
   // image(sound_icon, width-60, height-60, 30, 30);
   //
